@@ -46,9 +46,6 @@ int main(int argc, string argv[])
     }
     printf("\n");
 
-    // size is 1 larger than expected from the previous for loop
-    size = size - 1;
-
     // sort the haystack
     sort(haystack, size);
 
