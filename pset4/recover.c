@@ -31,8 +31,7 @@ int main(int argc, char* argv[])
     int counter = 0;
     
     // take 512 bytes every read til false
-    //while(fread(buffer, sizeof(buffer), 1, memorycard)==1)    --- this way doesn't work well. I can't figure out why...sad...
-    while (!feof(memorycard))
+    while(fread(buffer, sizeof(buffer), 1, memorycard)) 
     {
 
         // check if reach the header of JPEG
@@ -66,22 +65,13 @@ int main(int argc, char* argv[])
             counter++;
         }
         
-        // this occurs when a JPEG is found and its first block is written
+        // when a JPEG is found and its first block is written
         else if (counter > 0) 
         {
 
             // write to output file
             fwrite(buffer, sizeof(buffer), 1, img);            
         }
-        
-        // this occurs when the first JPEG header is not reached yet
-        //else  
-        //{
-            
-            fread(buffer, sizeof(buffer), 1, memorycard);
-            // mover infile pointer to next block
-            //fseek(memorycard, sizeof(buffer), SEEK_CUR);
-        //}
     }    
 
     // close input file
